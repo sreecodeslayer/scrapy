@@ -12,8 +12,16 @@ import scrapy
 from scrapy.settings import overridden_settings, Settings
 from scrapy.exceptions import ScrapyDeprecationWarning
 
-logger = logging.getLogger(__name__)
+'''
+changed by sree
+'''
+from log4mongo.handlers import MongoHandler
+from log4mongo.handlers import MongoFormatter
+'''
+changes finished
+'''
 
+logger = logging.getLogger(__name__)
 
 def failure_to_exc_info(failure):
     """Extract exc_info from Failure instances"""
@@ -121,17 +129,31 @@ def _get_handler(settings):
     """ Return a log handler object according to settings """
     filename = settings.get('LOG_FILE')
     if filename:
-        encoding = settings.get('LOG_ENCODING')
-        handler = logging.FileHandler(filename, encoding=encoding)
+        ''' my changes
+        '''
+        # encoding = settings.get('LOG_ENCODING')
+        # handler = logging.FileHandler(filename, encoding=encoding)
+
+        # spider=environ['SCRAPY_SPIDER']
+        # jobid=environ['SCRAPY_JOB']
+        filename = filename.split('.')[0].split('/')[3] # logs/yts/yts_spider/d98722423ec711e794c174d43509e27b.log > d98722423ec711e794c174d43509e27b
+        handler =  MongoHandler(host='mongodb://rootuser:passme123@localhost:27045',database_name="SCHEDULER_SPIDER_LOGS",collection=filename)
+        '''my changes end
+        '''
     elif settings.getbool('LOG_ENABLED'):
         handler = logging.StreamHandler()
     else:
         handler = logging.NullHandler()
 
+    '''
     formatter = logging.Formatter(
         fmt=settings.get('LOG_FORMAT'),
         datefmt=settings.get('LOG_DATEFORMAT')
     )
+    '''
+    # My change
+    formatter = MongoFormatter()
+
     handler.setFormatter(formatter)
     handler.setLevel(settings.get('LOG_LEVEL'))
     if settings.getbool('LOG_SHORT_NAMES'):
@@ -199,5 +221,4 @@ def logformatter_adapter(logkws):
     # NOTE: This also handles 'args' being an empty dict, that case doesn't
     # play well in logger.log calls
     args = logkws if not logkws.get('args') else logkws['args']
-
     return (level, message, args)
