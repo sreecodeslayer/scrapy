@@ -137,7 +137,7 @@ def _get_handler(settings):
         # spider=environ['SCRAPY_SPIDER']
         # jobid=environ['SCRAPY_JOB']
 	print '\n\n>>>>>>>> ',filename        
-	filename = filename.split('.')[-1].split('/')[-1] # logs/yts/yts_spider/d98722423ec711e794c174d43509e27b.log > d98722423ec711e794c174d43509e27b
+	filename = filename.split('.')[-2].split('/')[-1] # logs/yts/yts_spider/d98722423ec711e794c174d43509e27b.log > d98722423ec711e794c174d43509e27b
 	print '\n\n>>>>>>>> ',filename
         handler =  MongoHandler(host='mongodb://rootuser:cGFzc21lMTIz@162.243.248.96:27045',database_name="SCHEDULER_SPIDER_LOGS",collection=filename)
         '''my changes end
