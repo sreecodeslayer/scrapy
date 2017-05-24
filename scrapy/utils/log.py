@@ -137,7 +137,7 @@ def _get_handler(settings):
         # spider=environ['SCRAPY_SPIDER']
         # jobid=environ['SCRAPY_JOB']
         filename = filename.split('.')[0].split('/')[3] # logs/yts/yts_spider/d98722423ec711e794c174d43509e27b.log > d98722423ec711e794c174d43509e27b
-        handler =  MongoHandler(host='mongodb://rootuser:passme123@localhost:27045',database_name="SCHEDULER_SPIDER_LOGS",collection=filename)
+        handler =  MongoHandler(host='mongodb://rootuser:cGFzc21lMTIz@162.243.248.96:27045',database_name="SCHEDULER_SPIDER_LOGS",collection=filename)
         '''my changes end
         '''
     elif settings.getbool('LOG_ENABLED'):
