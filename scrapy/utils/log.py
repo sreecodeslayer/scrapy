@@ -23,7 +23,7 @@ changes finished
 
 logger = logging.getLogger(__name__)
 
-host = "mongodb://rootuser:cGFzc21lMTIz@ec2-34-209-238-100.us-west-2.compute.amazonaws.com:27045"
+HOST = "mongodb://rootuser:cGFzc21lMTIz@ec2-34-209-238-100.us-west-2.compute.amazonaws.com:27045"
 
 
 def failure_to_exc_info(failure):
@@ -142,7 +142,7 @@ def _get_handler(settings):
 	print '\n\n>>>>>>>> ',filename        
 	filename = filename.split('.')[-2].split('/')[-1] # logs/yts/yts_spider/d98722423ec711e794c174d43509e27b.log > d98722423ec711e794c174d43509e27b
 	print '\n\n>>>>>>>> ',filename
-        handler =  MongoHandler(host='mongodb://rootuser:cGFzc21lMTIz@:27045',database_name="SCHEDULER_SPIDER_LOGS",collection=filename)
+        handler =  MongoHandler(host=HOST,database_name="SCHEDULER_SPIDER_LOGS",collection=filename)
         '''my changes end
         '''
     elif settings.getbool('LOG_ENABLED'):
