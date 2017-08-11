@@ -23,7 +23,8 @@ changes finished
 
 logger = logging.getLogger(__name__)
 
-HOST = "mongodb://rootuser:cGFzc21lMTIz@ec2-34-209-238-100.us-west-2.compute.amazonaws.com:27045"
+#Change as per auth
+HOST = "mongodb://localhost:27017"
 
 
 def failure_to_exc_info(failure):
