@@ -187,7 +187,7 @@ startproject
 
 Creates a new Scrapy project named ``project_name``, under the ``project_dir``
 directory.
-If ``project_dir`` wasn't specified, ``project_dir`` will be the same as ``myproject``.
+If ``project_dir`` wasn't specified, ``project_dir`` will be the same as ``project_name``.
 
 Usage example::
 
@@ -543,7 +543,7 @@ Example::
 
     COMMANDS_MODULE = 'mybot.commands'
 
-.. _Deploying your project: http://scrapyd.readthedocs.org/en/latest/deploy.html
+.. _Deploying your project: https://scrapyd.readthedocs.io/en/latest/deploy.html
 
 Register commands via setup.py entry points
 -------------------------------------------
